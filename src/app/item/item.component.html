@@ -1,0 +1,23 @@
+
+<div class="item">
+
+  <input [id]="item.description" type="checkbox" (change)="item.done = !item.done" [checked]="item.done" />
+  <label [for]="item.description">{{item.description}}</label>
+
+  <div class="btn-wrapper" *ngIf="!editable">
+    <button class="btn" (click)="editable = !editable">Edit</button>
+    <button class="btn btn-warn" (click)="remove.emit()">Delete</button>
+  </div>
+
+  <!-- This section shows only if user clicks Edit button -->
+  <div *ngIf="editable">
+    <input class="sm-text-input" placeholder="edit item" [value]="item.description" #editedItem (keyup.enter)="saveItem(editedItem.value)">
+
+    <div class="btn-wrapper">
+      <button class="btn" (click)="editable = !editable">Cancel</button>
+      <button class="btn btn-save" (click)="saveItem(editedItem.value)">Save</button>
+    </div>
+
+	</div>
+
+</div>
