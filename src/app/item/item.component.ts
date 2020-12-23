@@ -11,28 +11,19 @@ import { ITEMS } from '../mock-items';
 export class ItemComponent implements OnInit {
 
   editable = false;
-
-  @Input()
-  item: Item;
-
   items = ITEMS;
   editedItem;
-
   done: boolean = false;
   doneItem;
 
+  @Input() item: Item;
 
-  @Input()  newItem: string;
+  @Input() newItem: string;
   @Output() newItemChange = new EventEmitter<string>();
-
 
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  editToggle(i) {
-
   }
 
   deleteItem() {

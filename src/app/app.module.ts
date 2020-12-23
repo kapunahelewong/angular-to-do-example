@@ -4,14 +4,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TodoComponent } from './todo/todo.component';
 import { ItemComponent } from './item/item.component';
+import { DonePipe } from './done.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodoComponent,
-    ItemComponent
+    ItemComponent,
+    DonePipe
   ],
   imports: [
     BrowserModule,

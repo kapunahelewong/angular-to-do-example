@@ -9,12 +9,78 @@
 
   <button (click)="addItem(newItem.value)">Add</button>
 
+  <div>
+    <button><a (click)="toDoItemsList=''">See all</a></button>
+    <button><a (click)="toDoItemsList='active'">See active</a></button>
+    <button><a (click)="toDoItemsList='done'">See done</a></button>
+  </div>
 
+  <div [ngSwitch]="toDoItemsList">
+    <div *ngSwitchCase="'active'">Active items
+      <ul>
+        <li *ngFor="let item of items; let i=index">
+          <app-item [item]="item" *ngIf="!item.done"></app-item>
+        </li>
+      </ul>
+    </div>
+    <div *ngSwitchCase="'done'">Done items
+      <ul>
+        <li *ngFor="let item of items; let i=index">
+          <app-item [item]="item" *ngIf="item.done"></app-item>
+        </li>
+      </ul>
+    </div>
+    <div *ngSwitchDefault>All
+      <ul>
+        <li *ngFor="let item of items; let i=index">
+          <app-item [item]="item"></app-item>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+
+
+  <div>
+    <button (click)="showAllItems = true">All</button>
+    <button (click)="showActiveItems = true">Active</button>
+    <button (click)="showDoneItems = true">Done</button>
+  </div>
+
+
+  <!-- show all items -->
+  <h3>All Items</h3>
   <ul>
+    <li *ngFor="let item of items; let i=index">
+      <app-item [item]="item" *ngIf="showAllItems"></app-item>
+    </li>
+  </ul>
+
+  <!-- show active items (not marked done) -->
+  <h3>Active Items</h3>
+  <ul>
+    <li *ngFor="let item of items; let i=index">
+      <app-item [item]="item" *ngIf="showActiveItems && !item.done"></app-item>
+    </li>
+  </ul>
+
+<!-- show done items -->
+<h3>Done Items</h3>
+  <ul>
+    <li *ngFor="let item of items; let i=index">
+      <app-item [item]="item" *ngIf="showDoneItems && item.done"></app-item>
+    </li>
+  </ul>
+
+
+  <!-- <ul>
     <li *ngFor="let item of items; let i=index">
       <app-item [item]="item"></app-item>
     </li>
-  </ul>
+  </ul> -->
+
+
 
 
   <!-- <app-todo></app-todo> -->

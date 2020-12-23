@@ -18,8 +18,10 @@ export class AppComponent {
   items = ITEMS;
   newItem = {};
   editable: boolean[] = [];
-
-
+  toDoItemsList;
+  showAllItems: boolean = false;
+  showActiveItems: boolean = false;
+  showDoneItems: boolean = false;
 
   constructor(private itemService: ItemService) { }
 
@@ -34,6 +36,20 @@ export class AppComponent {
       this.items.unshift(newItem);
     }
   }
+
+  showDone() {
+    console.log("not in if statement");
+
+    if(this.item.done) { //add to array
+      // this.items.push(value);
+      console.log("there's a done item");
+    }
+    // else { //remove from array
+      // this.items = this.items.filter(x => x != value);
+    //   console.log("nothing's done");
+    // }
+  }
+
 
 
 
