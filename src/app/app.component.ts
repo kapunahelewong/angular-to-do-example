@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 
-import { Item } from './item';
+import { ITEMS } from "./mock-items";
 import { ItemService } from './item.service';
+import { Item } from "./item";
+
 
 
 @Component({
@@ -12,7 +14,27 @@ import { ItemService } from './item.service';
 export class AppComponent {
   title = 'todo';
 
+  item: Item;
+  items = ITEMS;
+  newItem = {};
+  editable: boolean[] = [];
+
+
+
   constructor(private itemService: ItemService) { }
+
+
+  addItem(newItem) {
+    if (newItem) {
+      newItem = {
+        description: newItem,
+        done: false,
+        editable: true
+      }
+      this.items.unshift(newItem);
+    }
+  }
+
 
 
 }

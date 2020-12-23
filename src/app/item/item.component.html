@@ -1,0 +1,21 @@
+
+
+<div class="item">
+<label><input type="checkbox" (click)="markDone(doneItem)" [checked]="item.done"/>Done</label>
+
+
+  <span> {{item.description}}</span>
+  <button (click)="editable = !editable">Edit</button>
+  <button (click)="deleteItem()">Delete</button>
+
+  <div *ngIf="editable">
+	  <div>
+      <input type="text" #editedItem/>
+      <button (click)="saveItem(editedItem.value)">Save</button>
+      <button (click)="editable = !editable">Cancel</button>
+    </div>
+	</div>
+</div>
+
+
+

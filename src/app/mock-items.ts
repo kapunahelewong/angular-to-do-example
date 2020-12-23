@@ -1,8 +1,20 @@
 import { Item } from './item';
 
 export const ITEMS: Item[] = [
-      { description: 'organize variable collection', done: true },
-      { description: 'build Angular app', done: true },
-      { description: 'contribute to repo', done: false },
-      { description: 'go to favorite conf', done: true }
+      { description: 'organize variable collection',
+        done: true,
+        editable: true
+      },
+      { description: 'build Angular app',
+        done: false,
+        editable: true
+      },
+      { description: 'contribute to repo',
+        done: false,
+        editable: true
+      },
+      { description: 'go to favorite conf',
+        done: false,
+        editable: true
+      }
     ];

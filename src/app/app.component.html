@@ -1,39 +1,21 @@
+
+
+
 <div class="main">
-  <app-todo></app-todo>
-</div>
-<!-- <div class="todo-app">
-  <app-todo (submit)="addItem($event)"></app-todo>
+
+  <label>Add an item: <input #newItem
+    placeholder="add an item"
+    (keyup.enter)="addItem(newItem.value)"></label>
+
+  <button (click)="addItem(newItem.value)">Add</button>
+
 
   <ul>
-    <li *ngFor="let item of todoList">
-      <app-todo-item [item]="item"
-                     (remove)="removeItem($event)"
-                     (update)="updateItem($event.item, $event.changes)"></app-todo-item>
+    <li *ngFor="let item of items; let i=index">
+      <app-item [item]="item"></app-item>
     </li>
   </ul>
-</div> -->
-
-<!-- <ul class="heroes">
-  <li *ngFor="let item of items">
-    <span class="badge">{{item.id}}</span> {{item.description}}
-  </li>
-</ul> -->
 
 
-<!-- <label for="example-ngModel">[(ngModel)]:</label>
-<input [(ngModel)]="currentItem.name" id="example-ngModel">
- -->
-
-
-<!-- <div id="two-way-1">
-  <app-sizer [(size)]="fontSizePx"></app-sizer>
-  <div [style.font-size.px]="fontSizePx">Resizable Text</div>
-  <label>FontSize (px): <input [(ngModel)]="fontSizePx"></label>
+  <!-- <app-todo></app-todo> -->
 </div>
-<br>
-<div id="two-way-2">
-  <h2>De-sugared two-way binding</h2>
-  <app-sizer [size]="fontSizePx" (sizeChange)="fontSizePx=$event"></app-sizer>
-</div>
- -->
-

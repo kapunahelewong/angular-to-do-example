@@ -2,6 +2,7 @@
 <h2>My to do list</h2>
 
 
+
 <input #newHero
 placeholder="add an item"
 (keyup.enter)="addHero(newHero.value)"
@@ -9,10 +10,31 @@ placeholder="add an item"
 
 <button (click)="addHero(newHero.value)">Add</button>
 
-<ul>
-  <li *ngFor="let hero of heroes; let i=index">
-    <input type="checkbox" />{{hero}}
-    <button (click)="deleteItem(i)">Done!</button>
+<ul class="sorter">
+  <li>All</li>
+  <li>Active</li>
+  <li (click)="showDone(doneItem, i)">Done</li>
+</ul>
+
+<ul class="list-wrapper">
+  <li *ngFor="let hero of heroes; let i=index" >
+    <div class="list">
+      <label>
+        <input type="checkbox" (click)="markDone(doneItem, i)" />Done!
+      </label>
+
+      <span>{{hero}}</span>
+      <button (click)="deleteItem(i)">Delete</button>
+
+      <button (click)="editToggle(toggledItem, i)">Edit</button>
+
+
+      <div *ngIf="editable">
+        <input #editedItem placeholder="edit item">
+        <button (click)="saveItem(editedItem.value, i)">Save</button>
+        <button (click)="editToggle(i)">Cancel</button>
+      </div>
+    </div> <!-- list-->
   </li>
 </ul>
 
