@@ -1,56 +1,88 @@
-
-
-
 <div class="main">
+  <mat-form-field>
+    <mat-label class="lg-label">What would you like to do today?</mat-label>
+    <input matInput placeholder="add an item" #newItem (keyup.enter)="addItem(newItem.value)">
+  </mat-form-field>
 
-  <label>Add an item: <input #newItem
+
+<!-- without material design -->
+  <!-- <h2><label for="addItemInput">What would you like to do today?</label></h2>
+  <input #newItem
     placeholder="add an item"
-    (keyup.enter)="addItem(newItem.value)"></label>
+    (keyup.enter)="addItem(newItem.value)"
+    class="lg-text-input"
+    id="addItemInput"> -->
 
-  <button (click)="addItem(newItem.value)">Add</button>
+  <button class="btn-primary" (click)="addItem(newItem.value)">Add</button>
 
-  <div>
-    <button><a (click)="toDoItemsList=''">See all</a></button>
-    <button><a (click)="toDoItemsList='active'">See active</a></button>
-    <button><a (click)="toDoItemsList='done'">See done</a></button>
+
+  <div class="menu-wrapper">
+    <button class="mat-stroked-button btn-menu" (click)="toDoItemsList=''">All</button>
+    <button class="mat-stroked-button btn-menu" (click)="toDoItemsList='active'">Active</button>
+    <button class="mat-stroked-button btn-menu" (click)="toDoItemsList='done'">Done</button>
   </div>
 
+
+
+  <h2>{{items.length}} items remaining</h2>
   <div [ngSwitch]="toDoItemsList">
-    <div *ngSwitchCase="'active'">Active items
+
+    <ul *ngSwitchCase="'active'">
+      <li *ngFor="let item of items; let i=index" >
+        <app-item [item]="item" *ngIf="!item.done"></app-item>
+      </li>
+    </ul>
+
+    <ul *ngSwitchCase="'done'">
+
+      <li *ngFor="let item of items; let i=index" >
+        <app-item [item]="item" *ngIf="item.done"></app-item>
+      </li>
+    </ul>
+
+    <ul *ngSwitchDefault>
+      <li *ngFor="let item of items; let i=index">
+        <app-item [item]="item"></app-item>
+      </li>
+    </ul>
+  </div>
+
+<!--
+  <div [ngSwitch]="toDoItemsList">
+    <div *ngSwitchCase="'active'">
       <ul>
         <li *ngFor="let item of items; let i=index">
           <app-item [item]="item" *ngIf="!item.done"></app-item>
         </li>
       </ul>
     </div>
-    <div *ngSwitchCase="'done'">Done items
+    <div *ngSwitchCase="'done'">
       <ul>
         <li *ngFor="let item of items; let i=index">
           <app-item [item]="item" *ngIf="item.done"></app-item>
         </li>
       </ul>
     </div>
-    <div *ngSwitchDefault>All
+    <div *ngSwitchDefault>
       <ul>
         <li *ngFor="let item of items; let i=index">
           <app-item [item]="item"></app-item>
         </li>
       </ul>
     </div>
-  </div>
+  </div> -->
 
 
-
-
+<!--
+  <h2>Using ngIf</h2>
   <div>
-    <button (click)="showAllItems = true">All</button>
-    <button (click)="showActiveItems = true">Active</button>
-    <button (click)="showDoneItems = true">Done</button>
-  </div>
+    <button (click)="showAllItems = true; showActiveItems = false; showDoneItems = false">All</button>
+    <button (click)="showActiveItems = true; showDoneItems = false; showAllItems = false">Active</button>
+    <button (click)="showDoneItems = true; showAllItems = false; showActiveItems = false">Done</button>
+  </div> -->
 
 
   <!-- show all items -->
-  <h3>All Items</h3>
   <ul>
     <li *ngFor="let item of items; let i=index">
       <app-item [item]="item" *ngIf="showAllItems"></app-item>
@@ -58,7 +90,6 @@
   </ul>
 
   <!-- show active items (not marked done) -->
-  <h3>Active Items</h3>
   <ul>
     <li *ngFor="let item of items; let i=index">
       <app-item [item]="item" *ngIf="showActiveItems && !item.done"></app-item>
@@ -66,7 +97,6 @@
   </ul>
 
 <!-- show done items -->
-<h3>Done Items</h3>
   <ul>
     <li *ngFor="let item of items; let i=index">
       <app-item [item]="item" *ngIf="showDoneItems && item.done"></app-item>

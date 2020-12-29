@@ -1,3 +1,41 @@
+
 .item {
-  border: 2px solid rgb(249, 249, 249);
+  padding: 1rem;
+  text-align: left;
+  font-size: 1.2rem;
+
 }
+
+.mat-checkbox-inner-container {
+  height: 26px;
+  width: 26px;
+}
+
+.button-wrapper {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+button {
+  width: 40%;
+  font-size: 1.2rem;
+
+  // menu buttons flexbox styles
+  flex-basis: 49%;
+
+}
+
+.sm-text-input {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #555;
+  display: block;
+  box-sizing: border-box;
+  font-size: 1rem;
+  margin: 1rem 0;
+}
+
+
+

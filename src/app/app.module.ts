@@ -1,23 +1,27 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 
-import { AppRoutingModule } from './app-routing.module';
+
+
+
 import { AppComponent } from './app.component';
 import { ItemComponent } from './item/item.component';
-import { DonePipe } from './done.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ItemComponent,
-    DonePipe
+    ItemComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule
+    BrowserAnimationsModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

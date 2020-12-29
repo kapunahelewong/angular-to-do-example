@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 
 import { ITEMS } from "./mock-items";
-import { ItemService } from './item.service';
 import { Item } from "./item";
 
 
@@ -13,7 +12,6 @@ import { Item } from "./item";
 })
 export class AppComponent {
   title = 'todo';
-
   item: Item;
   items = ITEMS;
   newItem = {};
@@ -23,7 +21,9 @@ export class AppComponent {
   showActiveItems: boolean = false;
   showDoneItems: boolean = false;
 
-  constructor(private itemService: ItemService) { }
+  howMany = this.items.length;
+
+  constructor() { }
 
 
   addItem(newItem) {

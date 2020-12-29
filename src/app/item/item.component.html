@@ -1,19 +1,27 @@
 
 
 <div class="item">
-<label><input type="checkbox" (click)="markDone(doneItem)" [checked]="item.done"/>Done</label>
+  <!-- This regular checkbox works as expected -->
+  <!-- <label>
+    <input type="checkbox" (click)="markDone(doneItem)" [checked]="item.done"/>{{item.description}}
+  </label> -->
 
+  <div class="checkbox-wrapper">
+    <mat-checkbox class="example-margin" color="primary" [checked]="item.done" (change)="markDone(doneItem)">{{item.description}}</mat-checkbox>
+  </div>
 
-  <span> {{item.description}}</span>
-  <button (click)="editable = !editable">Edit</button>
-  <button (click)="deleteItem()">Delete</button>
+  <div class="button-wrapper">
+    <button mat-stroked-button (click)="editable = !editable">Edit</button>
+    <button mat-stroked-button color="warn" (click)="deleteItem()">Delete</button>
+  </div>
 
+  <!-- This section shows only if user clicks Edit button -->
   <div *ngIf="editable">
-	  <div>
-      <input type="text" #editedItem/>
-      <button (click)="saveItem(editedItem.value)">Save</button>
-      <button (click)="editable = !editable">Cancel</button>
-    </div>
+      <input type="text" class="sm-text-input" #editedItem/>
+      <div class="button-wrapper">
+        <button (click)="saveItem(editedItem.value)" mat-flat-button color="primary">Save</button>
+        <button (click)="editable = !editable" mat-stroked-button>Cancel</button>
+      </div>
 	</div>
 </div>
 
