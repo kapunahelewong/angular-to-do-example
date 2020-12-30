@@ -1,9 +1,13 @@
 <div class="main">
+  <h1>{{title}}</h1>
+  <!-- Material Design input -->
   <mat-form-field>
-    <mat-label class="lg-label">What would you like to do today?</mat-label>
+    <mat-label class="lg-label">Add something!</mat-label>
     <input matInput placeholder="add an item" #newItem (keyup.enter)="addItem(newItem.value)">
+    <button mat-button *ngIf="newItem" matSuffix mat-icon-button aria-label="Clear" (click)="newItem.value=''">
+      <mat-icon>close</mat-icon>
+    </button>
   </mat-form-field>
-
 
 <!-- without material design -->
   <!-- <h2><label for="addItemInput">What would you like to do today?</label></h2>
@@ -13,33 +17,56 @@
     class="lg-text-input"
     id="addItemInput"> -->
 
-  <button class="btn-primary" (click)="addItem(newItem.value)">Add</button>
+  <button mat-flat-button color="primary" (click)="addItem(newItem.value)">Add</button>
 
+  <!-- without material design -->
+  <!-- <button class="btn-primary" (click)="addItem(newItem.value)">Add</button> -->
 
-  <div class="menu-wrapper">
-    <button class="mat-stroked-button btn-menu" (click)="toDoItemsList=''">All</button>
-    <button class="mat-stroked-button btn-menu" (click)="toDoItemsList='active'">Active</button>
-    <button class="mat-stroked-button btn-menu" (click)="toDoItemsList='done'">Done</button>
+  <!-- Buttons that show all, still to do, or done items on click -->
+  <div class="btn-wrapper">
+    <button
+      class="mat-stroked-button btn-menu"
+      [ngClass]=" all ? 'all' : '!all'"
+      (click)="toDoItemsList='';
+      styleButtonAll()">All
+    </button>
+
+    <button
+      class="mat-stroked-button btn-menu"
+      [ngClass]=" active ? 'active' : '!active'"
+      (click)="toDoItemsList='active';
+        styleButtonToDo()">To Do
+    </button>
+
+    <button
+      class="mat-stroked-button btn-menu"
+      [ngClass]=" done ? 'done' : '!done'"
+      (click)="toDoItemsList='done';
+      styleButtonDone();">Done
+    </button>
+
   </div>
 
+  <h2> # of items in each list?</h2>
 
-
-  <h2>{{items.length}} items remaining</h2>
+  <!-- Clicking the buttons above determine which items show below -->
   <div [ngSwitch]="toDoItemsList">
 
+    <!-- This ul shows if the user clicks the To Do button -->
     <ul *ngSwitchCase="'active'">
-      <li *ngFor="let item of items; let i=index" >
+      <li  *ngFor="let item of items; let i=index">
         <app-item [item]="item" *ngIf="!item.done"></app-item>
       </li>
     </ul>
 
+    <!-- This ul shows if the user clicks the Done button -->
     <ul *ngSwitchCase="'done'">
-
-      <li *ngFor="let item of items; let i=index" >
+      <li *ngFor="let item of items; let i=index">
         <app-item [item]="item" *ngIf="item.done"></app-item>
       </li>
     </ul>
 
+    <!-- This ul shows by default or if the user clicks the All button -->
     <ul *ngSwitchDefault>
       <li *ngFor="let item of items; let i=index">
         <app-item [item]="item"></app-item>
@@ -47,71 +74,36 @@
     </ul>
   </div>
 
+  <!-- ngIf option -->
 <!--
-  <div [ngSwitch]="toDoItemsList">
-    <div *ngSwitchCase="'active'">
-      <ul>
-        <li *ngFor="let item of items; let i=index">
-          <app-item [item]="item" *ngIf="!item.done"></app-item>
-        </li>
-      </ul>
-    </div>
-    <div *ngSwitchCase="'done'">
-      <ul>
-        <li *ngFor="let item of items; let i=index">
-          <app-item [item]="item" *ngIf="item.done"></app-item>
-        </li>
-      </ul>
-    </div>
-    <div *ngSwitchDefault>
-      <ul>
-        <li *ngFor="let item of items; let i=index">
-          <app-item [item]="item"></app-item>
-        </li>
-      </ul>
-    </div>
-  </div> -->
 
-
-<!--
-  <h2>Using ngIf</h2>
-  <div>
-    <button (click)="showAllItems = true; showActiveItems = false; showDoneItems = false">All</button>
-    <button (click)="showActiveItems = true; showDoneItems = false; showAllItems = false">Active</button>
-    <button (click)="showDoneItems = true; showAllItems = false; showActiveItems = false">Done</button>
+  <h2>Using ngIf (no NgClass on these yet)</h2>
+  <div class="menu-wrapper">
+    <button class="mat-stroked-button btn-menu" (click)="showAllItems = true; showActiveItems = false; showDoneItems = false">All</button>
+    <button class="mat-stroked-button btn-menu" (click)="showActiveItems = true; showDoneItems = false; showAllItems = false">Active</button>
+    <button class="mat-stroked-button btn-menu" (click)="showDoneItems = true; showAllItems = false; showActiveItems = false">Done</button>
   </div> -->
 
 
   <!-- show all items -->
-  <ul>
+  <!-- <ul>
     <li *ngFor="let item of items; let i=index">
       <app-item [item]="item" *ngIf="showAllItems"></app-item>
     </li>
-  </ul>
+  </ul> -->
 
   <!-- show active items (not marked done) -->
-  <ul>
+  <!-- <ul>
     <li *ngFor="let item of items; let i=index">
       <app-item [item]="item" *ngIf="showActiveItems && !item.done"></app-item>
     </li>
-  </ul>
+  </ul> -->
 
 <!-- show done items -->
-  <ul>
+  <!-- <ul>
     <li *ngFor="let item of items; let i=index">
       <app-item [item]="item" *ngIf="showDoneItems && item.done"></app-item>
     </li>
-  </ul>
-
-
-  <!-- <ul>
-    <li *ngFor="let item of items; let i=index">
-      <app-item [item]="item"></app-item>
-    </li>
   </ul> -->
 
-
-
-
-  <!-- <app-todo></app-todo> -->
 </div>

@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { MatCheckboxDefaultOptions, MAT_CHECKBOX_DEFAULT_OPTIONS } from '@angular/material/checkbox';
+
 import { Item } from "../item";
 import { ITEMS } from '../mock-items';
 
@@ -12,22 +13,16 @@ import { ITEMS } from '../mock-items';
     {provide: MAT_CHECKBOX_DEFAULT_OPTIONS, useValue: { clickAction: 'check-indeterminate' } as MatCheckboxDefaultOptions}
   ]
 })
-export class ItemComponent implements OnInit {
+export class ItemComponent {
 
-  editable = false;
   items = ITEMS;
+  editable = false;
   editedItem;
-  // done: boolean = true;
   doneItem;
 
   @Input() item: Item;
   @Input() newItem: string;
   @Output() newItemChange = new EventEmitter<string>();
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
   deleteItem() {
     this.items.splice(0, 1);
@@ -44,8 +39,6 @@ export class ItemComponent implements OnInit {
 
   markDone(doneItem) {
     this.item.done = !this.item.done;
-    console.log(this.item.done);
-    console.log(this.items);
   }
 
 }

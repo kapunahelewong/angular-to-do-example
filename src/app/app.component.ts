@@ -3,28 +3,25 @@ import { Component } from '@angular/core';
 import { ITEMS } from "./mock-items";
 import { Item } from "./item";
 
-
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'todo';
+  title = 'My To Do List';
   item: Item;
   items = ITEMS;
   newItem = {};
-  editable: boolean[] = [];
   toDoItemsList;
   showAllItems: boolean = false;
   showActiveItems: boolean = false;
   showDoneItems: boolean = false;
 
-  howMany = this.items.length;
-
-  constructor() { }
-
+  // for applying CSS class with ngClass
+  all: boolean = false;
+  active: boolean = false;
+  done: boolean = false;
 
   addItem(newItem) {
     if (newItem) {
@@ -37,20 +34,20 @@ export class AppComponent {
     }
   }
 
-  showDone() {
-    console.log("not in if statement");
-
-    if(this.item.done) { //add to array
-      // this.items.push(value);
-      console.log("there's a done item");
-    }
-    // else { //remove from array
-      // this.items = this.items.filter(x => x != value);
-    //   console.log("nothing's done");
-    // }
+  styleButtonAll() {
+    this.all = true;
+    this.active = false;
+    this.done = false;
   }
 
-
-
-
+  styleButtonToDo() {
+    this.all = false;
+    this.active = true;
+    this.done = false;
+  }
+  styleButtonDone() {
+    this.all = false;
+    this.active = false;
+    this.done = true;
+  }
 }

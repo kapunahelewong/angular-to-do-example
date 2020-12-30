@@ -1,21 +1,11 @@
-
 .item {
-  padding: 1rem;
+  padding: .5rem 0 .75rem 0;
   text-align: left;
   font-size: 1.2rem;
-
 }
 
-.mat-checkbox-inner-container {
-  height: 26px;
-  width: 26px;
-}
-
-.button-wrapper {
-  margin-bottom: 2rem;
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
+.btn-wrapper {
+  margin-bottom: .5rem;
 }
 
 button {
@@ -27,15 +17,33 @@ button {
 
 }
 
-.sm-text-input {
-  width: 100%;
-  padding: 1rem;
-  border: 2px solid #555;
-  display: block;
-  box-sizing: border-box;
-  font-size: 1rem;
-  margin: 1rem 0;
+.checkbox-wrapper {
+  margin: .5rem 0;
 }
 
+// for non-material design version
+// .sm-text-input {
+//   width: 100%;
+//   padding: 1rem;
+//   border: 2px solid #555;
+//   display: block;
+//   box-sizing: border-box;
+//   font-size: 1rem;
+//   margin: 1rem 0;
+// }
 
+.mat-form-field-label  {
+  font-size: 1rem;
+  text-align: left;
+}
+
+.sm-label {
+  font-size: .9rem;
+
+  // media query to make font larger at 600px viewport
+  @media (min-width: 600px) {
+    font-size: 1.25rem;
+  }
+
+}
 

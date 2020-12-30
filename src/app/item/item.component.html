@@ -1,27 +1,37 @@
-
-
 <div class="item">
-  <!-- This regular checkbox works as expected -->
+  <!-- Regular checkbox (no material) -->
   <!-- <label>
     <input type="checkbox" (click)="markDone(doneItem)" [checked]="item.done"/>{{item.description}}
   </label> -->
 
+  <!-- Check box to mark an item done -->
   <div class="checkbox-wrapper">
     <mat-checkbox class="example-margin" color="primary" [checked]="item.done" (change)="markDone(doneItem)">{{item.description}}</mat-checkbox>
   </div>
 
-  <div class="button-wrapper">
+  <!-- Edit and delete buttons -->
+  <div class="btn-wrapper" *ngIf="!editable">
     <button mat-stroked-button (click)="editable = !editable">Edit</button>
     <button mat-stroked-button color="warn" (click)="deleteItem()">Delete</button>
   </div>
 
   <!-- This section shows only if user clicks Edit button -->
   <div *ngIf="editable">
-      <input type="text" class="sm-text-input" #editedItem/>
-      <div class="button-wrapper">
-        <button (click)="saveItem(editedItem.value)" mat-flat-button color="primary">Save</button>
-        <button (click)="editable = !editable" mat-stroked-button>Cancel</button>
-      </div>
+    <!-- <input type="text" class="sm-text-input" #editedItem/> -->
+    <mat-form-field>
+      <mat-label class="sm-label">Edit item: {{this.item.description}}</mat-label>
+      <!-- input w/o material design -->
+      <!-- <input placeholder="edit item" #editedItem> -->
+      <input matInput placeholder="edit item" #editedItem (keyup.enter)="saveItem(editedItem.value)">
+      <button mat-button *ngIf="editedItem" matSuffix mat-icon-button aria-label="Clear" (click)="editedItem.value=''">
+          <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <div class="btn-wrapper">
+      <button (click)="saveItem(editedItem.value)" mat-flat-button color="primary">Save</button>
+      <button (click)="editable = !editable" mat-stroked-button>Cancel</button>
+    </div>
 	</div>
 </div>
 
