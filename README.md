@@ -1,4 +1,4 @@
-# Todo
+# To do App WIP
 
 ## Setup
 
@@ -36,7 +36,7 @@ To run your `todo` application, use `ng serve`.
 
 ```
 ng serve
-``
+```
 
 Navigate to `http://localhost:4200/` to see your new application.
 If you change any of the source files, the application automatically reloads.
