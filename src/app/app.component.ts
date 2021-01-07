@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
 
-import { ITEMS } from "./mock-items";
-import { Item } from "./item";
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,44 +7,30 @@ import { Item } from "./item";
 })
 export class AppComponent {
   title = 'My To Do List';
-  item: Item;
-  items = ITEMS;
-  newItem = {};
-  toDoItemsList;
-  showAllItems: boolean = false;
-  showActiveItems: boolean = false;
-  showDoneItems: boolean = false;
+  filter: 'all' | 'active' | 'done' = 'all';
 
-  // for applying CSS class with ngClass
-  all: boolean = false;
-  active: boolean = false;
-  done: boolean = false;
+  allItems = [
+    { description: 'eat', done: true },
+    { description: 'sleep', done: false },
+    { description: 'play', done: false },
+    { description: 'laugh', done: false },
+  ];
 
-  addItem(newItem) {
-    if (newItem) {
-      newItem = {
-        description: newItem,
-        done: false,
-        editable: true
-      }
-      this.items.unshift(newItem);
+  addItem(description) {
+    this.allItems.push({
+      description,
+      done: false
+    });
+  }
+
+  remove(item) {
+    this.allItems.splice(this.allItems.indexOf(item), 1);
+  }
+
+  get items() {
+    if (this.filter === 'all') {
+      return this.allItems;
     }
-  }
-
-  styleButtonAll() {
-    this.all = true;
-    this.active = false;
-    this.done = false;
-  }
-
-  styleButtonToDo() {
-    this.all = false;
-    this.active = true;
-    this.done = false;
-  }
-  styleButtonDone() {
-    this.all = false;
-    this.active = false;
-    this.done = true;
+    return this.allItems.filter(item => this.filter === 'done' ? item.done : !item.done);
   }
 }
