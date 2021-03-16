@@ -1,3 +1,17 @@
+
+# This readme is the first of 6 readmes that outline the steps for building the accompanying To-do application. See the code in `src/app`.
+
+The other readmes are:
+
+* [README2.md](README2.md)
+* [README3.md](README3.md)
+* [README4.md](README4.md)
+* [README5.md](README5.md)
+* [README6.md](README6.md)
+
+## Begin content
+===================================================
+
 # Getting started with Angular
 
 This topic can help you understand Angular: what Angular is, what advantages it provides, and what you might expect as you start to build your applications.
