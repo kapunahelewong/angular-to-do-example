@@ -59,6 +59,37 @@ This article covers the following:
 * Serving your application locally
 * Getting to know the structure of an Angular application
 
+## What you'll build
+
+This tutorial guides you through building a to-do list application. In this application you'll learn how to use Angular to manage, edit, add, delete, and filter items.
+
+## Prerequisites
+
+To use the Angular framework, you should be familiar with the following:
+
+* [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript)
+* [HTML](https://developer.mozilla.org/docs/Learn/HTML/Introduction_to_HTML)
+* [CSS](https://developer.mozilla.org/docs/Learn/CSS/First_steps)
+
+Knowledge of [TypeScript](https://www.typescriptlang.org/) is helpful, but not required.
+
+To install Angular on your local system, you need the following:
+
+* **Node.js**
+
+  Angular requires a [current, active LTS, or maintenance LTS](https://nodejs.org/about/releases) version of Node.js.
+
+  For information about specific version requirements, see the `engines` key in the [package.json](https://unpkg.com/@angular/cli/package.json) file.
+
+  For more information on installing Node.js, see [nodejs.org](https://nodejs.org "Nodejs.org").
+  If you are unsure what version of Node.js runs on your system, run `node -v` in a terminal window.
+
+* **npm package manager**
+
+  Angular, the Angular CLI, and Angular applications depend on [npm packages](https://docs.npmjs.com/getting-started/what-is-npm) for many features and functions.
+  To download and install npm packages, you need an npm package manager.
+  This guide uses the [npm client](https://docs.npmjs.com/cli/install) command line interface, which is installed with `Node.js` by default.
+  To check that you have the npm client installed, run `npm -v` in a terminal window.
 
 ## Set up your application
 
@@ -70,13 +101,18 @@ npm install -g @angular/cli
 ```
 
 Angular CLI commands all start with `ng`, followed by what you'd like the CLI to do.
-Use the following `ng new` command to create a new application called `todo`:
+In the Desktop directory, use the following `ng new` command to create a new application called `todo`:
 
 ```
 ng new todo --routing=false --style=css
 ```
 
-The `ng new` command creates a minimal starter Angular application.
+The `ng new` command creates a minimal starter Angular application on your Desktop.
+The additional flags, `--routing` and `--style`, define how to handle navigation and styles in the application.
+This tutorial describes these features later in more detail.
+
+If you are prompted to enforce stricter type checking, you can respond with yes.
+
 Navigate into your new project with the following `cd` command:
 
 ```
@@ -104,10 +140,10 @@ Key files that the CLI generates automatically include the following:
 
 1. `app.module.ts`: Specifies the files that the application uses.
   This file acts as a central hub for the other files in your application.
-1. `app.component.ts`: Contains the logic for the application's main page.
+1. `app.component.ts`: Also known as the class, contains the logic for the application's main page.
 1. `app.component.html`: Contains the HTML for `AppComponent`. The contents of this file are also known as the template.
   The template determines the view or what you see in the browser.
-1. `app.component.css`: Contains the styles for `AppComponent`.
+1. `app.component.css`: Contains the styles for `AppComponent`. You use this file when you want to define styles that only apply to a specific component, as opposed to your application overall.
 
 A component in Angular is made up of three main parts&mdash;the template, styles, and the class.
 For example, `app.component.ts`, `app.component.html`, and `app.component.css` together constitute the `AppComponent`.
@@ -156,7 +192,7 @@ export class ItemComponent {
 
 This component is called `ItemComponent`, and its selector is `app-item`.
 You use a selector just like regular HTML tags by placing it within other templates.
-When a selector is in a template, the browser renders the template of the component within the parent component.
+When a selector is in a template, the browser renders the template of that component.
 This tutorial guides you through creating two components and using one within the other.
 
 Angular's component model offers strong encapsulation and an intuitive application structure.

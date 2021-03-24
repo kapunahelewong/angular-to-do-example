@@ -5,10 +5,8 @@ The finished application displays a list of to-do items and features editing, de
 
 This article guides you through the following:
 
+* Getting to know your application structure
 * Displaying a list of to-do items
-* Adding, editing, and deleting items
-* Filtering the list of items to view all items, outstanding items, and done items
-* Building your completed application
 
 ## The to-do application structure
 
