@@ -49,6 +49,10 @@
   border-color: #000;
 }
 
+.btn-warn:focus {
+  border-color: #000;
+}
+
 .sm-text-input {
   width: 100%;
   padding: .5rem;

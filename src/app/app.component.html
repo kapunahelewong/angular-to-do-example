@@ -36,7 +36,8 @@
     </button>
   </div>
 
-  <h2>{{items.length}} item(s)</h2>
+  <h2>{{items.length}} <span *ngIf="items.length === 1; else elseBlock">item</span>
+  <ng-template #elseBlock>items</ng-template></h2>
 
   <ul>
     <li *ngFor="let item of items">

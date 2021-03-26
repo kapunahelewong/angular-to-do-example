@@ -64,6 +64,7 @@ Add mark up for managing items by replacing the placeholder content in `item.com
 The first input is a checkbox so users can check off items when an item is complete.
 The double curly braces, `{{}}`, in the `<input>` and `<label>` for the checkbox signifies Angular's interpolation.
 Angular uses `{{item.description}}` to retrieve the description of the current `item` from the `items` array.
+The next section explains how components share data in detail.
 
 The next two buttons for editing and deleting the current item are within a `<div>`.
 On this `<div>` is an `*ngIf`, a built-in Angular directive that you can use to dynamically change the structure of the DOM.
@@ -109,6 +110,22 @@ When `editable` is `false`, Angular puts `<div>` with the **Edit** and **Delete*
 
 Clicking the **Save** button calls the `saveItem()` method.
 The `saveItem()` method takes the value from the `#editedItem` `<input>` and changes the item's `description` to `editedItem.value` string.
+
+## Prepare the AppComponent
+
+In the next section, you will add code that relies on communication the `AppComponent` and the `ItemComponent`.
+Configure the AppComponent first by adding the following to `app.component.ts`:
+
+```ts
+  remove(item) {
+    this.allItems.splice(this.allItems.indexOf(item), 1);
+  }
+```
+
+The `remove()` method uses the JavaScript `Array.splice()` method to remove one item at at the `indexOf` the relevant item.
+In plain English, this means that the `splice()` method removes the item from the array.
+For more information on the `splice()` method, see the MDN Web Docs article on [Array.prototype.splice()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice).
+
 
 ## Add logic to `ItemComponent`
 
@@ -184,11 +201,12 @@ In this example, the selector is `app-item`:
 })
 ```
 
-To use the `ItemComponent` selector within the `AppComponent`, you add its selector, `<app-item>`, to `app.component.html`.
-Replace the current unordered list in `app.component.html` with the following updated version :
+To use the `ItemComponent` selector within the `AppComponent`, you add the element, `<app-item>`, which corresponds to the selector you defined for the component class to `app.component.html`.
+Replace the current unordered list in `app.component.html` with the following updated version:
 
 ```html
-  <h2>{{items.length}} item(s)</h2>
+  <h2>{{items.length}} <span *ngIf="items.length === 1; else elseBlock">item</span>
+  <ng-template #elseBlock>items</ng-template></h2>
 
   <ul>
     <li *ngFor="let item of items">
@@ -198,6 +216,12 @@ Replace the current unordered list in `app.component.html` with the following up
 ```
 
 The double curly brace syntax, `{{}}`, in the `<h2>` interpolates the length of the `items` array and displays the number.
+
+The `<span>` in the `<h2>` uses an `*ngIf` and `else` to determine whether the `<h2>` should say "item" or "items".
+If there is only a single item in the list, the `<span>` containing "item" displays.
+Otherwise, if the length of the `items` array is anything other than `1`, the `<ng-template>`, which we've named `elseBlock`, with the syntax `#elseBlock`, shows instead of the `<span>`.
+You can use Angular's `<ng-template>` when you don't want content to render by default.
+In this case, when the length of the `items` array is not `1`, the `*ngIf` shows the `elseBlock` and not the `<span>`.
 
 The `<li>` uses Angular's repeater directive, `*ngFor`, to iterate over all of the items in the `items` array.
 Angular's `*ngFor` like `*ngIf`, is another directive that helps you change the structure of the DOM while writing less code.

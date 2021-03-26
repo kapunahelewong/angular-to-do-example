@@ -116,8 +116,9 @@ The first item, `eat`, has a `done` value of true.
 
 The getter, `get items()`, retrieves the items from the `allItems` array if the `filter` is equal to `all`.
 Otherwise, `get items()` returns the `done` items or the outstanding items depending on how the user filters the view.
+The getter also establishes the name of the array as `items`, which you'll use in the next section.
 
-## Add HTML to the `APpComponent` template
+## Add HTML to the `AppComponent` template
 
 To see the list of items in the browser, replace the contents of `app.component.html` with the following HTML:
 
